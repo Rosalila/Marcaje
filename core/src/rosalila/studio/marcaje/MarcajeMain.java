@@ -10,13 +10,20 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MarcajeMain extends Game {
 	public static AssetManager MANAGER;
-	private SpriteBatch batch;
+//	private SpriteBatch batch;
 	
 	@Override
 	public void create () {
 		MANAGER = new AssetManager();
-		batch = new SpriteBatch();
-		setScreen(new ActivityScreen(this));//error
+//		batch = new SpriteBatch();
+		
+		initAssets();
+		
+		while(!MANAGER.update()){
+			
+		}
+		
+		setScreen(new ActivityScreen(this));
 	}
 	
 	@Override
@@ -25,7 +32,15 @@ public class MarcajeMain extends Game {
 		MANAGER.dispose();
 	}
 	
-	public SpriteBatch getSpriteBatch(){
-		return batch;
+	private void initAssets(){
+		MANAGER.load("badlogic.jpg", Texture.class);
 	}
+	
+	public Texture getTexture(String name){
+		return MANAGER.get(name, Texture.class);
+	}
+	
+//	public SpriteBatch getSpriteBatch(){
+//		return batch;
+//	}
 }

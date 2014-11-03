@@ -10,12 +10,20 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class ActivityScreen extends AbstractScreen {
-//	private Stage stage;
-	Image image;
+public class TryScreen extends AbstractScreen {
 
-	public ActivityScreen(MarcajeMain game) {
+	Image image;
+	
+	public TryScreen(MarcajeMain game) {
 		super(game);
+	}
+
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+		stage.act();
+		stage.draw();
 	}
 
 	@Override
@@ -25,26 +33,18 @@ public class ActivityScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(stage);
 		
 		image = new Image(game.getTexture("badlogic.jpg"));
-//		image.setPosition(200, 200);
+		image.setPosition(200, 200);
 		image.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
 				image.remove();
-				game.setScreen(new TryScreen(game));
+				game.setScreen(new ActivityScreen(game));
 				return true;
 			}
 		});
 		
 		stage.addActor(image);
-	}
-
-	@Override
-	public void render(float delta) {
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		stage.act();
-		stage.draw();
 	}
 
 	@Override
@@ -63,4 +63,5 @@ public class ActivityScreen extends AbstractScreen {
 		super.resize(width, height);
 //		stage.getViewport().update(560, 1536, true);
 	}
+
 }
