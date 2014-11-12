@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class TryScreen extends AbstractScreen {
 
 	Image image;
+	private Stage stage;
 	
 	public TryScreen(MarcajeMain game) {
 		super(game);
@@ -28,17 +29,16 @@ public class TryScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
-//		stage = new Stage();
-//		stage.getViewport().update(560, 1536, true);
+		stage = new Stage(game.view, game.getSpriteBatch());
+		stage.getViewport().update(width, height, true);
 		Gdx.input.setInputProcessor(stage);
 		
-		image = new Image(game.getTexture("badlogic.jpg"));
+		image = new Image(game.getTexture("Jaduken.png"));
 		image.setPosition(200, 200);
 		image.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				image.remove();
 				game.setScreen(new ActivityScreen(game));
 				return true;
 			}
@@ -60,8 +60,7 @@ public class TryScreen extends AbstractScreen {
 	
 	@Override
 	public void resize(int width, int height) {
-		super.resize(width, height);
-//		stage.getViewport().update(560, 1536, true);
+		stage.getViewport().update(this.width, this.height, true);
 	}
 
 }

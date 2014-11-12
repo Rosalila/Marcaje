@@ -3,15 +3,17 @@ package rosalila.studio.marcaje.Screen;
 import rosalila.studio.marcaje.MarcajeMain;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class ActivityScreen extends AbstractScreen {
-//	private Stage stage;
+	private Stage stage;
 	Image image;
 
 	public ActivityScreen(MarcajeMain game) {
@@ -20,17 +22,15 @@ public class ActivityScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
-//		stage = new Stage();
-//		stage.getViewport().update(560, 1536, true);
+		stage = new Stage(game.view, game.getSpriteBatch());
+		stage.getViewport().update(width, height, true);
 		Gdx.input.setInputProcessor(stage);
 		
 		image = new Image(game.getTexture("badlogic.jpg"));
-//		image.setPosition(200, 200);
 		image.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				image.remove();
 				game.setScreen(new TryScreen(game));
 				return true;
 			}
@@ -60,7 +60,6 @@ public class ActivityScreen extends AbstractScreen {
 	
 	@Override
 	public void resize(int width, int height) {
-		super.resize(width, height);
-//		stage.getViewport().update(560, 1536, true);
+		stage.getViewport().update(this.width, this.height, true);
 	}
 }

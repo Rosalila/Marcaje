@@ -8,28 +8,26 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public abstract class AbstractScreen implements Screen {
 	protected MarcajeMain game;
-	protected Stage stage;
+	protected int width, height;
 
 	public AbstractScreen(MarcajeMain game) {
 		this.game=game;
-		stage = new Stage();
-		stage.getViewport().update(560, 1536, true);
+		width=game.width;
+		height=game.height;
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(560, 1536, true);
+		
 	}
 	
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
 		
 	}
 
